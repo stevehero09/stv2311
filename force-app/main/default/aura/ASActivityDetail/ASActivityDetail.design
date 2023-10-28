@@ -1,0 +1,8 @@
+<design:component label="Activity Detail Component">
+    <design:attribute name="financialYear" default="Financial year to date" label="Financial Year Column Label"/>
+    <design:attribute name="sinceEst" default="Since establishment" label="Since Establishment Column Label"/>
+    <design:attribute name="gifts" default="Gifts to charity" label="Gift Row Label"/>
+    <design:attribute name="donations" default="Donations to my fund" label="Donation Row Label"/>
+    <design:attribute name="returns" default="Investment returns" label="Investment Return Row Label"/>
+    <design:attribute name="adjustments" default="Adjustments" label="Adjustment Row Label"/>
+</design:component>

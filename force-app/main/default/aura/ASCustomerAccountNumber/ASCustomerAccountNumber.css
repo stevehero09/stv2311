@@ -1,0 +1,37 @@
+.THIS {
+    width: 100vw;
+    position: relative;
+    left: 49.45%;
+    transform: translateX(-50%);
+    background-color: black;
+    height: 2.625rem;
+    margin-top: -0.75rem;
+    color: white;
+}
+
+.THIS .content-wrapper {
+    display:flex;
+    margin:0 auto;
+    width:1400px;
+    padding-left:15px;
+    align-items:center;
+    height:inherit;
+}
+
+.THIS .can-wrapper, .THIS .balance-wrapper {
+    width: 50%;
+    display: block;
+}
+
+.THIS .can-wrapper span, .THIS .balance-wrapper span {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.THIS .can-wrapper span {
+    float: left;
+}
+
+.THIS .balance-wrapper span {
+    float: right;
+}

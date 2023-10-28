@@ -1,0 +1,14 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="ASAccountSummaryCTRL">
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="myAccountRecord" type="Account"></aura:attribute>
+    <div class="component-wrapper">
+        <div class="content-wrapper">
+            <div class="can-wrapper">                
+                <span>{!'Fund Reference Number: ' + v.myAccountRecord.AS_CAN__c}</span><!--Customer Account Number-->
+            </div>
+            <div class="balance-wrapper">
+                <span>{!'Available Balance: $ ' + v.myAccountRecord.AS_Available_Balance__c}</span>
+            </div>
+        </div>
+    </div>
+</aura:component>

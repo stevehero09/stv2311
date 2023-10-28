@@ -1,0 +1,46 @@
+<!--
+ Created by Jimson Rudinas on 6/03/2018.
+ Displays the fund details of account from the current user
+-->
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="ASAccountSummaryCTRL" access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="myAccount" type="Object"/>
+    <aura:attribute name="financialYear" type="String"/>
+    <aura:attribute name="sinceEst" type="String"/>
+    <aura:attribute name="gifts" type="String"/>
+    <aura:attribute name="donations" type="String"/>
+    <aura:attribute name="returns" type="String"/>
+    <aura:attribute name="adjustments" type="String"/>
+
+    <div class="header">
+        <span class="title">Activity Summary</span>
+    </div>
+    <div class="content"> 
+        <table class="apsf-table">
+            <tr class="titles">
+                <th class="no-style"></th>
+                <th class="title">{!v.financialYear}</th>
+                <th class="title">{!v.sinceEst}</th>
+            </tr>
+            <tr>
+                <td class="title">{!v.gifts}</td>
+                <td class="value"><lightning:formattedNumber value="{!v.myAccount.AS_Gifts_YTD__c}" style="currency" currencyCode="AUD" currencyDisplayAs="symbol"/></td>
+                  
+                <td class="value"><lightning:formattedNumber value="{!v.myAccount.AS_Gifts_Since_Inception__c}" style="currency" currencyCode="AUD" currencyDisplayAs="symbol"/></td>
+            </tr>
+            <tr>
+                <td class="title">{!v.donations}</td>
+                <td class="value"><lightning:formattedNumber value="{!v.myAccount.AS_Donations_YTD__c}" style="currency" currencyCode="AUD" currencyDisplayAs="symbol"/></td>
+                <td class="value"><lightning:formattedNumber value="{!v.myAccount.AS_Donations_Since_Inception__c}" style="currency" currencyCode="AUD" currencyDisplayAs="symbol"/></td>   
+            </tr>
+            <tr>
+                <td class="title">{!v.returns}</td>
+                <td class="value"><lightning:formattedNumber value="{!v.myAccount.AS_Investment_Returns_YTD__c}" style="currency" currencyCode="AUD" currencyDisplayAs="symbol"/></td>
+                <td class="value"><lightning:formattedNumber value="{!v.myAccount.AS_Investment_Returns_Since_Inception__c}" style="currency" currencyCode="AUD" currencyDisplayAs="symbol"/></td>
+            </tr>
+          
+        </table>
+    </div>
+
+</aura:component>

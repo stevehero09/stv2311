@@ -1,0 +1,75 @@
+<apex:page sidebar="false" showHeader="false" readOnly="false" tabStyle="Account" standardController="Account" recordSetVar="accounts"  extensions="ASMoveGATSFilesToFolderPageCTRL">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Confirmation</title>
+            <apex:slds />
+        </head>
+	<body id="bdy">
+        <apex:form >
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>
+                            <apex:outputPanel id="mess">
+
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <center><b>You are about to move the ATS files of each Organisation to their respective Annual Activity Statement folder. Are you sure you wish to proceed? </b></center>
+                                </div>
+                                <apex:outputLabel id="returnMessage"></apex:outputLabel>
+                            </apex:outputPanel>
+                        </p>
+                        <!-- for Loading-->
+                        
+                        <!-- <apex:outputPanel id="spinner" style="display:inline;">
+                            <apex:outputPanel styleClass="slds-spinner slds-spinner_large slds-spinner_brand">
+                                <span class="slds-assistive-text">Loading</span>
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>  -->
+                       
+                    </div>
+                    <footer class="slds-modal__footer">
+
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="/a1K?" value="Cancel"/>
+                        <apex:commandButton styleClass="slds-button slds-button_brand"  action="{!moveFiles}" value="Confirm"/>
+
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </apex:form>
+    </body>
+    </html>
+    <apex:includeScript value="/soap/ajax/40.0/connection.js"/>
+    <apex:includeScript value="/soap/ajax/40.0/apex.js"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function (){
+        callWebService();
+        function callWebService(){
+            console.log('e_console');
+            // var sessionId 	= $("[id*='sessionId']").attr("data-value");
+            // console.log('sessionId: ' + sessionId);
+            // sforce.connection.sessionId=sessionId;
+            // var results = sforce.apex.execute("BatchCPIIncreasePercentage","runBatch", {});
+
+
+            // $("[id*='spinner']").attr('style', 'display:none');
+            // $("[id*='returnMessage']").text(results);
+        }	
+    });
+    </script>
+</apex:page>

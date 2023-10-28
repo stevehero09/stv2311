@@ -1,0 +1,72 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="ASDonationGoalCTRL">
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="progressDetails" type="Integer" />
+
+    <aura:attribute name="title" type="String" />
+
+    <aura:attribute name="maxValueLabel" type="String" />
+    <aura:attribute name="maxValuehelptext" type="String" />
+
+    <aura:attribute name="progressValueLabel" type="String" />
+    <aura:attribute name="progressValuehelptext" type="String" />
+
+    <aura:attribute name="outstandingValueLabel" type="String" />
+    <aura:attribute name="outstandingValuehelptext" type="String" />
+
+    <aura:attribute name="progressKeyLabel" type="String" />
+    <aura:attribute name="outstandingKeyLabel" type="String" />
+
+    <aura:attribute name="progressColor" type="String" />
+    <aura:attribute name="outstandingColor" type="String" />
+    
+    
+    <div class="donation-goal">
+        <div class="header">
+            <span class="title">{!v.title}</span>
+        </div>
+        <div class="content">
+            <div class="data-table">
+                <div class="data-row">
+                    <span class="title">
+                        {!v.maxValueLabel}
+                        <aura:if isTrue="{!not(empty(v.maxValuehelptext))}">
+                            <lightning:helptext content="{!v.maxValuehelptext}" />
+                        </aura:if>
+                    </span>
+                    <span class="data">
+                        <lightning:formattedNumber value="{!v.progressDetails.minimumRequired}" style="currency" currencyCode="AUD" minimumFractionDigits="2" maximumFractionDigits="2" />
+                    </span>
+                </div>
+                <div class="data-row">
+                    <span class="title">
+                        {!v.progressValueLabel}
+                        <aura:if isTrue="{!not(empty(v.progressValuehelptext))}">
+                            <lightning:helptext content="{!v.progressValuehelptext}" />
+                        </aura:if>
+                    </span>
+                    <span class="data">
+                        <lightning:formattedNumber value="{!v.progressDetails.gifted}" style="currency" currencyCode="AUD" minimumFractionDigits="2" maximumFractionDigits="2" />
+                    </span>
+                </div>
+                <div class="data-row">
+                    <span class="title">
+                        {!v.outstandingValueLabel}
+                        <aura:if isTrue="{!not(empty(v.outstandingValuehelptext))}">
+                            <lightning:helptext content="{!v.outstandingValuehelptext}" />
+                        </aura:if>
+                    </span>
+                    <span class="data">
+                        <lightning:formattedNumber value="{!v.progressDetails.outstanding}" style="currency" currencyCode="AUD" minimumFractionDigits="2" maximumFractionDigits="2" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="bar" style="{!'background-color:' + v.outstandingColor}">
+            <div class="progress" style="{!'width: ' + v.progressDetails.progress + '%; background-color:' + v.progressColor}"></div>
+        </div>
+        <div class="legends">
+            <p class="legend legend-gifted"><span class="color-box" style="{!'background-color:' + v.progressColor}"></span>{!v.progressKeyLabel}</p>
+            <p class="legend legend-outstanding"><span class="color-box" style="{!'background-color:' + v.outstandingColor}"></span>{!v.outstandingKeyLabel}</p>
+        </div>
+    </div>
+</aura:component>

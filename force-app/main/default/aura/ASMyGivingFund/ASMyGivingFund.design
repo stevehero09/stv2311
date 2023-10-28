@@ -1,0 +1,8 @@
+<design:component label="My Giving Component">
+    <design:attribute name="balanceLabel" description="Text to display for the Balance Label"></design:attribute>
+	<design:attribute name="balanceHelpText" description="Help Text to Display for Balance Label"></design:attribute>
+    <design:attribute name="availBalanceLabel" description="Text to display for the Available Balance Label"></design:attribute>
+    <design:attribute name="availBalanceHelpText" description="Help Text to Display for Available Balance"></design:attribute>
+    <design:attribute name="preferred_io" description="Text to display for the Investment Preference Label"></design:attribute>
+	<design:attribute name="preferred_ioHelpText" description="Help Text to Display for Investment Preference"></design:attribute> 
+</design:component>

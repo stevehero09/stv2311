@@ -1,0 +1,96 @@
+<!-- <apex:page standardController="AS_Month_End" recordSetVar="opportunities" tabStyle="AS_Month_End" extensions="DeleteRecentMonthEndController"> -->
+<!-- <apex:page standardController="AS_Month_End__c" extensions="DeleteRecentMonthEndController" recordSetVar="cases" action="{!bumpCases}"> -->
+    
+<!-- <apex:page sidebar="false" showHeader="false" readOnly="true" tabStyle="npe03__Recurring_Donation__c" standardController="npe03__Recurring_Donation__c" recordSetVar="recurring"> -->
+
+<apex:page sidebar="false" lightningStyleSheets="true" showHeader="false" readOnly="false" tabStyle="AS_Month_End__c" standardController="AS_Month_End__c" recordSetVar="monEn"  extensions="AS_DeleteRecentMonthEndController">
+
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Confirmation</title>
+            <apex:slds />
+        </head>
+	<body id="bdy">
+        <apex:form >
+            <!-- <apex:inputHidden id="sessionId" html-data-value="{!GETSESSIONID()}"/> -->
+            <apex:actionFunction name="forStatus" status="fetchStatus" reRender="mess" oncomplete="callWebService();" />
+            <!--apex:actionFunction action="{!processPayment}" name="forStatus" status="fetchStatus" reRender="modal, mess" >
+            	<apex:param name="param1" value="{!$CurrentPage.parameters.Id}"/>
+            </apex:actionFunction-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>
+                            <apex:outputPanel id="mess">
+
+                                <div class="slds-modal__content slds-p-around--medium">
+                                    <center><b>You are about to archive the most recent Month End record and all its associated Statement Line Items. Are you sure you wish to proceed? </b></center>
+                                </div>
+                                
+                                <div class="aps-input-rollback" style="padding: 0 50px;">
+                                <apex:selectList value="{!selectedOption}" size="1" required="true" style="margin:15px 0;width:100%;" >
+                                    <apex:selectOptions value="{!accountOption}" />
+                                </apex:selectList>
+                                <apex:inputTextarea id="rollbacknote" value="{!rollbacknote}" rows="6"  required="true" style="resize:none;width:100%" />
+                                </div>
+                                
+                         <p/> 
+                                <apex:outputLabel id="returnMessage"></apex:outputLabel>
+                            </apex:outputPanel>
+                        </p>
+                        
+                        <!-- for Loading-->
+                        
+                        <!-- <apex:outputPanel id="spinner" style="display:inline;">
+                            <apex:outputPanel styleClass="slds-spinner slds-spinner_large slds-spinner_brand">
+                                <span class="slds-assistive-text">Loading</span>
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </apex:outputPanel> 
+                        </apex:outputPanel>  -->
+                       
+                    </div>
+                    <footer class="slds-modal__footer">
+
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!cancel}" value="Cancel" immediate="true"/>
+                        <apex:commandButton styleClass="slds-button slds-button_brand"  action="{!deleteRecord}" value="Confirm" />
+                       
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </apex:form>
+    </body>
+    </html>
+    <apex:includeScript value="/soap/ajax/40.0/connection.js"/>
+    <apex:includeScript value="/soap/ajax/40.0/apex.js"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function (){
+        callWebService();
+        function callWebService(){
+            console.log('e_console');
+            // var sessionId 	= $("[id*='sessionId']").attr("data-value");
+            // console.log('sessionId: ' + sessionId);
+            // sforce.connection.sessionId=sessionId;
+            // var results = sforce.apex.execute("BatchCPIIncreasePercentage","runBatch", {});
+
+
+            // $("[id*='spinner']").attr('style', 'display:none');
+            // $("[id*='returnMessage']").text(results);
+        }	
+    });
+    </script>
+</apex:page>

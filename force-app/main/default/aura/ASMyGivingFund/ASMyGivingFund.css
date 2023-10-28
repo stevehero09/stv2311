@@ -1,0 +1,49 @@
+.THIS .header {
+    border-bottom: 1px solid #d1d3d4;
+}
+
+.THIS .header .title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #000000;
+    display: block;
+}
+
+.THIS .header .reference-number {
+    color: #808285;
+    font-weight: normal;
+}
+
+.THIS .content {
+    max-width: 768px;
+}
+
+.THIS .content .data-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.THIS .content .data-item {
+    display: inline-block;
+}
+
+.THIS .content .data-item-label,
+.THIS .content .data-item-value {
+    display: inline-block;
+    width: 50%;
+}
+
+.THIS .content .data-item-label {
+    color: #808285;
+    text-align: left;
+}
+
+.THIS .content .data-item-value {
+    color: #000000;
+    font-weight: 600;
+    text-align: right;
+}
+
+.THIS .content lightning-helptext {
+    padding-left: 5px;
+}

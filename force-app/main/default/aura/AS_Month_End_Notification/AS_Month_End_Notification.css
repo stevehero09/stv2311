@@ -1,0 +1,10 @@
+.THIS {
+}
+
+.THIS.slds-p-horizontal_small {
+    margin: 10px 0;
+}
+
+.THIS.slds-p-horizontal_small > .slds-form-element {
+    margin-bottom: 10px;
+}

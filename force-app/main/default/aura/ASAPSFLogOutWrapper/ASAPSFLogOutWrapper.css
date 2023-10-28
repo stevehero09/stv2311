@@ -1,0 +1,15 @@
+.THIS lightning-button button{
+     background: #808285!important;
+     padding: 0rem 1.5rem .2rem 1.5rem!important;
+     color: #fff;
+     display: inline-block;
+     border-radius: 10rem;
+     box-shadow: 0.1rem 0.2rem 0.5rem 0.1rem rgb(0 0 0 / 25%);
+     font-weight: bold;
+}
+
+.THIS lightning-button button:hover {
+     background: #808285!important;
+     color: #fff;
+     text-decoration: underline;
+}

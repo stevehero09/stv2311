@@ -1,0 +1,18 @@
+<design:component label="Donation Goal">
+    <design:attribute name="title" label="Title" description="Enter text to display as title for the component." />
+
+    <design:attribute name="maxValueLabel" label="Max Value Label" description="Enter the label for the max value." />
+    <design:attribute name="maxValuehelptext" label="Max Value Helptext" description="Enter the text for the max value as helptext." />
+
+    <design:attribute name="progressValueLabel" label="Progress Value Label" description="Enter the label for the progress value." />
+    <design:attribute name="progressValuehelptext" label="Progress Value Helptext" description="Enter the text for the progress value as helptext." />
+
+    <design:attribute name="outstandingValueLabel" label="Outstanding Value Label" description="Enter the label for the outstanding value." />
+    <design:attribute name="outstandingValuehelptext" label="Outstanding Value Helptext" description="Enter the text for the outstanding value as helptext." />
+
+    <design:attribute name="progressKeyLabel" label="Progress Key Label" description="Enter the label of the progress key." />
+    <design:attribute name="outstandingKeyLabel" label="Outstanding Key Label" description="Enter the label of the outstanding key." />
+    
+    <design:attribute name="progressColor" label="Progress Color" description="Enter the hex color value for the progress." />
+    <design:attribute name="outstandingColor" label="outstanding Color" description="Enter the hex color value for the outstanding." />
+</design:component>

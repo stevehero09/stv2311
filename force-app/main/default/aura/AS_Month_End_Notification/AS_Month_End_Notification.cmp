@@ -1,0 +1,22 @@
+<aura:component access="GLOBAL" implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" controller="ASMonthEndNotificationController" >
+
+    <aura:attribute name="investmentOption" type="String" />
+	
+    <div class="slds-p-horizontal_small">
+
+        <lightning:select aura:id="investmentOption" name="investment-option" label="Investment Option" value="{!v.investmentOption}" required="true">
+            <option value="">-- Select Investment Option --</option>
+            <option vale="General Portfolio">General Portfolio</option>
+            <option value="Focused Portfolio">Focused Portfolio</option>
+            <option value="Both">Both</option>
+        </lightning:select>
+
+        <lightning:button 
+            label="Notify"
+            variant="brand" 
+            onclick="{!c.handleNotify}" 
+            aura:id="notify" />
+        
+    </div>
+
+</aura:component>

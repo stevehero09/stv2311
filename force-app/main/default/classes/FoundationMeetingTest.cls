@@ -1,0 +1,42 @@
+@IsTest (seeAllData = true)
+public class FoundationMeetingTest {
+
+    static testMethod void createFoundationMeeting() {
+        Account acc = new Account();
+        acc.Name = 'Some Account';
+        insert acc;
+
+        Contact cnt = new Contact();
+        cnt.FirstName = 'Sne';
+        cnt.LastName = 'Sme name';
+        insert cnt;
+
+        Foundation_Meeting__c FM = new Foundation_Meeting__c();
+        FM.Paper_Author__c = UserInfo.getUserId();
+        FM.Organisation_Name__c = acc.Id;
+        FM.Meeting_type__c = 'Annual';
+        FM.Date_of_Meeting__c = System.today();
+        insert FM;
+    }
+     static testMethod void UpdateFoundationMeetingDate() {
+        Account acc = new Account();
+        acc.Name = 'Some Account';
+        insert acc;
+
+        Contact cnt = new Contact();
+        cnt.FirstName = 'Sne';
+        cnt.LastName = 'Sme name';
+        insert cnt;
+
+        Foundation_Meeting__c FM = new Foundation_Meeting__c();
+        FM.Organisation_Name__c = acc.Id;
+        FM.Meeting_type__c = 'Annual';
+        FM.Date_of_Meeting__c = System.today();
+        insert FM;
+
+        FM.Date_of_Meeting__c = System.today() + 10;
+        update FM;
+    }
+
+    
+}
