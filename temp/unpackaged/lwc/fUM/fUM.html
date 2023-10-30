@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Most Recent AFI FUM">
+        <div class="slds-p-around_medium">
+            <template if:true={afiRecord}>
+                <p><lightning-badge label='FUM'></lightning-badge>
+                    <lightning-formatted-number
+                        value={afiRecord.FUM__c}
+                        format-style="currency"
+                        currency-code="AUD">
+                    </lightning-formatted-number></p>
+                <p><lightning-badge label='FUM at Date'></lightning-badge>
+                    {afiRecord.FUM_at_Date__c}
+                </p>    
+            </template>
+            <template if:true={error}>
+                <p>Error loading AFI record</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

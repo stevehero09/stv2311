@@ -1,0 +1,8 @@
+.THIS.header .title {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.THIS.header {
+    border-bottom: solid 1px #d1d3d4;
+}

@@ -1,0 +1,62 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="ASMyGivingFundCTRL">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="myGivingAcct" type="Account"></aura:attribute>
+    <aura:attribute name="balanceLabel" type="String" default="Balance"></aura:attribute>
+    <aura:attribute name="balanceHelpText" type="String"></aura:attribute>
+    <aura:attribute name="availBalanceLabel" type="String" default="Available Balance"></aura:attribute>
+    <aura:attribute name="availBalanceHelpText" type="String"></aura:attribute>
+    <aura:attribute name="preferred_io" type="String" default="Preferred Investment Portfolio"></aura:attribute>
+    <aura:attribute name="preferred_ioHelpText" type="String"></aura:attribute>
+    
+	<div class="my-giving-fund">
+    	<div class="header">
+        	<span class="title">{!v.myGivingAcct.recordName}</span>
+            <span class="reference-number">{!v.myGivingAcct.recordCAN}</span>
+        </div>
+        <div class="content">
+        	<div class="content-wrapper">
+            	<ul class="data-list">
+                	<li class="data-item balance-data">
+                    	<span class="data-item-label">
+                            {!v.balanceLabel + ' as at ' + v.myGivingAcct.monthEnd}
+                            <aura:if isTrue="{!not(empty(v.balanceHelpText))}">
+                                <lightning:helptext content="{!v.balanceHelpText}" />
+                            </aura:if>
+                        </span>
+                        <span class="data-item-value">
+                            <lightning:formattedNumber
+                            	value="{!v.myGivingAcct.recordBalance}"
+                                style="currency"
+                                currencyCode="AUD" />
+                        </span>
+                    </li>
+                    <li class="data-item available-balance-data">
+                    	<span class="data-item-label">
+                            {!v.availBalanceLabel}
+                        	<aura:if isTrue="{!not(empty(v.availBalanceHelpText))}">
+                                <lightning:helptext content="{!v.availBalanceHelpText}" />
+                            </aura:if>
+                        </span>
+                        <span class="data-item-value">
+                            <lightning:formattedNumber
+                            	value="{!v.myGivingAcct.recordAvailBalance}"
+                                style="currency"
+                                currencyCode="AUD" />
+                        </span>
+                    </li>
+                    <li class="data-item available-balance-data">
+                    	<span class="data-item-label">
+                            {!v.preferred_io}
+                        	<aura:if isTrue="{!not(empty(v.preferred_ioHelpText))}">
+                                <lightning:helptext content="{!v.preferred_ioHelpText}" />
+                            </aura:if>
+                        </span>
+                        <span class="data-item-value">
+                            <strong>{!v.myGivingAcct.investment_option}</strong>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aura:component>

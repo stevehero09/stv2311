@@ -1,0 +1,3 @@
+<design:component label="Custom Next Button">
+	<design:attribute name="btnLabel" label="Button Label" />
+</design:component>

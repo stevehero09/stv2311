@@ -1,0 +1,12 @@
+.THIS .slds-button_brand:disabled {
+    /* opacity: 0.6; */
+    cursor: not-allowed;
+}
+
+.THIS .slds-form-element {
+    min-height: 72px !important;
+}
+
+.THIS .slds-datepicker {
+    top: 32px !important;
+}

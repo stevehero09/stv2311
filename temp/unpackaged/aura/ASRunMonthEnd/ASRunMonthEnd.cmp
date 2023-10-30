@@ -1,0 +1,43 @@
+<!--
+* @author: Jan Dainis C. Saren
+* @date: February 6, 2020
+* @lightning Component name: ASRunMonthEnd
+* @description: lightning component for the global action button for Month End.
+* @updated : No 1
+* @updated by: Romnick Hilot
+* @updated Date: April 27, 2020 ticket #APSFSP-56
+* @description of the update: Disable the submit button while processing the data
+-->
+<aura:component Controller="ASRunMonthEndCTRL" implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global">
+    
+    <aura:attribute name="simplenewMonthEnd" type="AS_Month_End__c" default="{'sobjectType':'AS_Month_End__c', 
+                                                        'Name': '',
+                                                        'Total_Valuation__c': '',
+                                                        'Effective_Date__c': '', 
+                                                        'AS_Investment_Option__c': ''}"/>
+    <!-- Display the new contact form -->
+    <div class="Create Month ENd Date">
+       <div class="slds-p-horizontal--small">
+           <lightning:input type="text" aura:id="monthEndName" label="Month End Name:" value="{!v.simplenewMonthEnd.Name}" required="true"/>
+           <lightning:input aura:id="changeInFoundVal" label="Change in Foundation Value" value="{!v.simplenewMonthEnd.Total_Valuation__c}" required="true" fieldLevelHelp="What is the change in foundation value for the current month? This amount will be used for calculation of sub fund investment returns."/>
+           <lightning:input aura:id="EffectiveDate" type="date" label="Effective Date" value="{!v.simplenewMonthEnd.Effective_Date__c}" required="true"/>
+           <lightning:select aura:id="investmentOption" name="investment-option" label="Investment Option" value="{!v.simplenewMonthEnd.AS_Investment_Option__c}" required="true">
+               <option value="">-- Select Investment Option --</option>
+               <option vale="General Portfolio">General Portfolio</option>
+               <option value="Focused Portfolio">Focused Portfolio</option>
+           </lightning:select>
+           <br/>
+           <lightning:button label="Submit"
+                             variant="brand" 
+                             onclick="{!c.saveRecordMonthEnd}" 
+                             aura:id="saveBtnId"/>
+       </div>
+    </div>
+
+    <!-- Display Lightning Data Service errors -->
+    <aura:if isTrue="{!not(empty(v.newMonthEndError))}">
+        <div class="recordError">
+            {!v.newError}</div>
+    </aura:if>
+
+</aura:component>

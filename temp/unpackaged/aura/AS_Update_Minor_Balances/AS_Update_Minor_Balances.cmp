@@ -1,0 +1,21 @@
+<aura:component implements="force:lightningQuickAction" controller="ASUpdateMinorBalancesController">
+	<aura:attribute name="progress" type="Integer" default="0"/>
+    <aura:attribute name="showProgressBar" type="Boolean" default="false"/>
+    <aura:attribute name="isCompleted" type="Boolean" default="false"/>
+    <aura:attribute name="totalItem" type="Integer" default="1" />
+    <aura:attribute name="totalItemProcessed" type="Integer" default="1" />
+
+        <div class="slds-align_absolute-center" style="height:5rem">
+            <lightning:button variant="brand" label="Update Minor Balances" title="Execute Batch" onclick="{!c.executeBatch}" />
+        </div>
+
+        <aura:if isTrue="{!v.showProgressBar}">
+            <aura:if isTrue="{!v.totalItemProcessed lt v.totalItem}">
+                Processing {!v.totalItemProcessed} of {!v.totalItem}
+            </aura:if>
+            <aura:if isTrue="{!v.isCompleted}">
+                Process completed
+            </aura:if>
+            <lightning:progressBar value="{!v.progress}" size="large" variant="circular"/>
+        </aura:if>        
+</aura:component>

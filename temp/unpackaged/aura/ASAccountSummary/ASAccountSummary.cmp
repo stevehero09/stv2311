@@ -1,0 +1,177 @@
+<aura:component controller="ASAccountSummaryCTRL" implements="forceCommunity:availableForAllPageTypes" access="global">
+	<aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="myAccount" type="Object"/>
+    
+	    <div>
+            <lightning:icon class="slds-m-right_x-small" iconName="standard:account" alternativeText="Account" />
+            <p class="box-title" style="display: inline-block;">Account Summary</p>
+            
+            <div class="slds-grid slds-wrap slds-m-top_x-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <p>Giving Fund:</p><!--Account Name-->
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <a onclick="{! c.redirectToAccount }" data-id="{!v.myAccount.AccDetails.Id }">
+                        <p>{!v.myAccount.AccDetails.Name}</p>
+                    </a>
+                </div>
+                <div class="slds-col slds-size_2-of-6">
+                    <p>Fund Reference Number:</p><!--CAN-->
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                    <p>{!v.myAccount.AccDetails.AS_CAN__c}</p>
+                </div>
+            </div>
+            
+            <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <p>Your APS Contact:</p><!--Account Manager-->
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                        <p>{!v.myAccount.AccDetails.Owner.Name}</p>
+                </div>
+                <!-- <div class="slds-col slds-size_2-of-6">
+                    <p>Status:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                    <p>{!v.myAccount.AccDetails.Status__c}</p>
+                </div> -->
+                <div class="slds-col slds-size_2-of-6">
+                    <p>Date Joined APS:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                    <p>{!v.myAccount.FormattedDate}</p> 
+                </div>
+            </div>     
+            
+            <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <p>Balance:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <aura:if isTrue="{!v.myAccount.AccDetails.Balance__c != null }">
+                         <p>{! '$' + v.myAccount.AccDetails.Balance__c}</p>
+                    </aura:if>
+                </div>
+
+                <div class="slds-col slds-size_2-of-6">
+                    <p>Available Balance:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                     <aura:if isTrue="{!v.myAccount.AccDetails.AS_Available_Balance__c != null }">
+                        <p>{! '$' + v.myAccount.AccDetails.AS_Available_Balance__c}</p>
+                      </aura:if>
+                </div>
+            </div>
+            
+            <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <p>Balances Last Updated:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <p>{!v.myAccount.DateFormat}</p>
+                </div>
+                
+                <div class="slds-col slds-size_2-of-6">
+                    <p>Balances Up To:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                        <p>{!v.myAccount.AccDetails.AS_Last_Run_Month_End__r.Name}</p>
+                </div>
+            </div>
+            
+            <div><p><br></br></p></div>
+            
+                        <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <p>Donations FYD:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <aura:if isTrue="{!v.myAccount.AccDetails.AS_Donations_YTD__c != null }">
+                         <p>{! '$' + v.myAccount.AccDetails.AS_Donations_YTD__c}</p>
+                    </aura:if>
+                </div>
+
+                <div class="slds-col slds-size_2-of-6">
+                    <p>Donations Since Inception:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                     <aura:if isTrue="{!v.myAccount.AccDetails.AS_Donations_Since_Inception__c != null }">
+                        <p>{! '$' + v.myAccount.AccDetails.AS_Donations_Since_Inception__c}</p>
+                      </aura:if>
+                </div>
+            </div>
+            
+                        <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <p>Gifts FYD:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <aura:if isTrue="{!v.myAccount.AccDetails.AS_Gifts_YTD__c != null }">
+                         <p>{! '$' + v.myAccount.AccDetails.AS_Gifts_YTD__c}</p>
+                    </aura:if>
+                </div>
+
+                <div class="slds-col slds-size_2-of-6">
+                    <p>Gifts Since Inception:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                     <aura:if isTrue="{!v.myAccount.AccDetails.AS_Gifts_Since_Inception__c != null }">
+                        <p>{! '$' + v.myAccount.AccDetails.AS_Gifts_Since_Inception__c}</p>
+                      </aura:if>
+                </div>
+            </div>
+            
+                        <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <p>Investment Returns FYD:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <aura:if isTrue="{!v.myAccount.AccDetails.AS_Investment_Returns_YTD__c != null }">
+                         <p>{! '$' + v.myAccount.AccDetails.AS_Investment_Returns_YTD__c}</p>
+                    </aura:if>
+                </div>
+
+                <div class="slds-col slds-size_2-of-6">
+                    <p>Investment Returns Since Inception:</p>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                     <aura:if isTrue="{!v.myAccount.AccDetails.AS_Investment_Returns_Since_Inception__c != null }">
+                        <p>{! '$' + v.myAccount.AccDetails.AS_Investment_Returns_Since_Inception__c}</p>
+                      </aura:if>
+                </div>
+            </div>
+            
+                        <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                <div class="slds-col slds-size_1-of-4">
+                    <aura:if isTrue="{!v.myAccount.AccDetails.AS_Adjustments_YTD__c != null }">
+                        <p>Adjustments FYD:</p>
+                    </aura:if>
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    <aura:if isTrue="{!v.myAccount.AccDetails.AS_Adjustments_YTD__c != null }">
+                        <p>{! '$' + v.myAccount.AccDetails.AS_Adjustments_YTD__c}</p>
+                    </aura:if>
+                </div>
+
+                <div class="slds-col slds-size_2-of-6">
+                     <aura:if isTrue="{!v.myAccount.AccDetails.AS_Adjustments_Since_Inception__c != null }">
+                         <p>Adjustments Since Inception:</p>
+                     </aura:if>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                     <aura:if isTrue="{!v.myAccount.AccDetails.AS_Adjustments_Since_Inception__c != null }">
+                        <p>{! '$' + v.myAccount.AccDetails.AS_Adjustments_Since_Inception__c}</p>
+                      </aura:if>
+                </div>
+            </div>
+            
+            <!-- <div class="slds-grid slds-wrap slds-m-top_xx-small">
+                
+               
+                
+            </div> -->
+            
+        </div>
+    
+</aura:component>

@@ -1,0 +1,83 @@
+@isTest
+public class ASDonationGoalCTRL_Test {
+    @testsetup
+    static void createRecords(){
+        createUserWithRole();     
+    } 
+    
+    private static User createUserWithRole() {
+        
+        UserRole adminRole = new UserRole(DeveloperName = 'TestRole', Name = 'Test Role');
+        insert adminRole;
+        
+        Profile adminprofile = [SELECT Id,name from Profile WHERE Name = 'System Administrator' LIMIT 1];
+        
+        User adminUser = new User(Alias = 'Testrole', 
+                                  Email='test' + math.random() + '@test.com', 
+                                  UserRoleId = adminRole.Id, 
+                                  EmailEncodingKey='UTF-8',
+                                  LastName='TestRole-Last', 
+                                  LanguageLocaleKey='en_US', 
+                                  LocaleSidKey='en_US',
+                                  ProfileId = adminprofile.Id, 
+                                  TimeZoneSidKey = 'Australia/Sydney', 
+                                  UserName = 'test_' + math.random() + '@test.com',
+                                  CompanyName = 'Test Australian Philanthropic Services'); //added CompanyName since this is a required in lookup filter for Account Owner SUP - 4316);
+        
+        system.runAs(adminUser){
+            createPartnerUser();
+        }
+        
+        return adminUser;
+    }
+    
+    private static User createPartnerUser() {
+        Profile p = [Select ID, Name from Profile Where Name = 'Customer Community Plus Login User (Custom)'];
+        RecordType rType = [SELECT Id FROM RecordType WHERE DeveloperName = 'APS_Foundation_Sub_Fund'];
+        
+        //added AS_Minimum_Gift_Percentage__c custom setting to populate the Minimum Required Gifts for SUP - 4316
+        AS_Minimum_Gift_Percentage__c setting = new AS_Minimum_Gift_Percentage__c();
+        setting.AS_Percent__c = 3.0;
+        insert setting;
+        
+        Account a = New Account(Name = 'TestPortalAccount', 
+                                RecordTypeId = rType.Id,
+                                AS_June_30_Balance__c = 100,
+                               	AS_Gifts_YTD__c = 100);
+        insert a;
+        
+        Contact c = New Contact( FirstName = 'Portal', LastName = 'Test', AccountID = a.id, Email = 'test' + math.random() + '@test.com' );
+        insert c;
+        
+        user u = New User(
+            UserName = 'test_' + math.random() + '@test.com',
+            FirstName = 'Test-First',
+            LastName = 'Test-Last',
+            Alias = 'test',
+            email = 'test' + math.random() + '@test.com',
+            CommunityNickName = string.valueOf(math.random()).substring(0,6),
+            ProfileID = p.id,
+            TimeZoneSidKey = 'Australia/Sydney', 
+            LocaleSidKey = 'en_US', 
+            EmailEncodingKey = 'UTF-8', 
+            LanguageLocaleKey = 'en_US',
+            ContactID = c.id);
+        
+        insert u;
+        
+        return u;
+        
+    }
+    
+     @isTest static void testgetAccountRecord() {
+        	User portalUser = [Select Id from User where LastName = 'Test-Last'];
+        
+        	system.runAs(portalUser){
+                ASDonationGoalCTRL.OrganisationWrapper getUserAccount = ASDonationGoalCTRL.getDonationGoalProgress();
+                system.debug('getuserAccount' + getUserAccount);
+                // Perform some testing
+                System.assert( getUserAccount != null, 'getDonationGoalProgress method is empty' );
+            }
+    }
+    
+}

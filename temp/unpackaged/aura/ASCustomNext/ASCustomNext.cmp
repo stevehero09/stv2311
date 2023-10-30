@@ -1,0 +1,5 @@
+<aura:component implements="lightning:availableForFlowScreens">
+	<aura:attribute name="btnLabel" type="String" default="Next" />
+    
+    <lightning:button variant="brand" label="{!v.btnLabel}" title="{!v.btnLabel}" onclick="{! c.onClick }" />
+</aura:component>
